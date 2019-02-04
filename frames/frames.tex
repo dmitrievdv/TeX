@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage[section]{placeins}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage[left=2cm, right=1.5cm, top=1.5cm, bottom=1.5cm]{geometry}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{indentfirst}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{setspace}
+\usepackage{placeins}
+\graphicspath{{images/}}
+
+\begin{document}
+
+\title{Различные системы отсчета}
+\maketitle
+
+Начало координат всех систем отсчета помещено в центр звезды.
+
+\begin{itemize}
+\item \textbf{Система отсчета наблюдателя}
+Система отсчета, в которой ось $Z$ сонаправлена с лучом зрения. Ось вращения звезды отклонена от оси $Z$ (луча зрения) на угол $i$ и лежит в плоскости $XZ$. Угол между осью магнитосферы и осью вращения --- $\alpha$. Угол между плоскостью, содержащей ось вращения и ось магнитосферы, и плоскостью $XZ$ --- $\psi$.
+\item \textbf{Система отсчета звезды}
+Повернутая вокруг оси $Y$ система отсчета наблюдателя на угол $i$. Ось вращения в итоге совпадает с осью $Z$. 
+\item \textbf{Система отсчета магнитосферы}
+Ось магнитосферы в этой системе отсчета совпадает с осью $Z$, а ось вращения лежит в плоскости $XZ$ 
+\item \textbf{Рабочая система отсчета}
+Луч зрения --- ось $Z$, ось магнитосферы в плоскости $ZY$
+\end{itemize}
+
+\section{Переходы между системами отсчета}
+
+\begin{itemize}
+\item \textbf{Наблюдатель, звезда}
+
+\begin{equation}\label{eq:obs-to-star}
+\begin{aligned}
+x_\star &= x_\text{obs} \cos(i) - z_\text{obs}\sin(i), \\
+y_\star &= y_\text{obs}, \\
+z_\star &= x_\text{obs} \sin(i) + z_\text{obs}\cos(i). \\
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eq:star-to-obs}
+\begin{aligned}
+x_\text{obs} &= x_\star \cos(i) + z_\star\sin(i), \\
+y_\text{obs} &= y_\star, \\
+z_\text{obs} &= -x_\star \sin(i) + z_\star\cos(i). \\
+\end{aligned}
+\end{equation}
+
+\item \textbf{Магнитосфера, звезда}
+
+\begin{equation}\label{eq:mag-to-star}
+\begin{aligned}
+x_\star &= x_\text{mag} \cos(\psi)\cos(\alpha) + y_\text{mag}\sin(\psi) - z_\text{mag}\cos(\psi)\sin(\alpha), \\
+y_\star &= - x_\text{mag}\sin(\psi)\cos(\alpha) + y_\text{mag}\cos(\psi) + z_\text{mag}\sin(\psi)\sin(\alpha),  \\
+z_\star &= x_\text{mag} \sin(\alpha) + z_\text{mag}\cos(\alpha). \\
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eq:star-to-mag}
+\begin{aligned}
+x_\text{mag} &= x_\star \cos(\psi)\cos(\alpha) - y_\star\sin(\psi)\cos(\alpha) + z_\star\sin(\alpha), \\
+y_\text{mag} &= x_\star\sin(\psi) + y_\star\cos(\psi),  \\
+z_\text{mag} &= -x_\star\cos(\psi)\sin(\alpha) + y_\star\sin(\psi)\sin(\alpha) + z_\star\cos(\alpha). \\
+\end{aligned}
+\end{equation}
+
+\item\textbf{Магнитосфера, наблюдатель}
+
+Подставляя \eqref{eq:obs-to-star} в \eqref{eq:star-to-mag}, получим:
+%
+\begin{equation}\label{eq:obs-to-mag}
+\begin{aligned}
+x_\text{mag} &= x_\text{obs}(\cos(i)\cos(\alpha)\cos(\psi) - \sin(i)\sin(\alpha)) - y_\text{obs}\cos(\alpha)\sin(\psi) \\
+             &+ z_\text{obs}(\cos(i)\sin(\alpha) - \sin(i)\cos(\alpha)\cos(\psi)), \\
+y_\text{mag} &= x_\text{obs}\cos(i)\sin(\psi) + y_\text{obs}\cos(\psi) - z_\text{obs}\sin(i)\sin(\psi),  \\
+z_\text{mag} &= x_\text{obs}(\sin(i)\cos(\alpha) - \cos(i)\cos(\psi)\sin(\alpha))  + y_\text{obs}\sin(\psi)\sin(\alpha) \\
+             &+ z_\text{obs}(\cos(i))\cos(\alpha) + \sin(i)\cos(\psi)\sin(\alpha)). \\
+\end{aligned}
+\end{equation}
+
+А \eqref{eq:mag-to-star} в \eqref{eq:star-to-obs}:
+%
+\begin{equation}\label{eq:mag-to-obs}
+\begin{aligned}
+x_\text{obs} &= x_\text{mag}(\cos(\psi)\cos(\alpha)\cos(i) + \sin(\alpha)\sin(i)) + y_\text{mag}\sin(\psi)\cos(i) \\
+             &+ z_\text{mag}(\cos(\alpha)\sin(i) - \cos(\psi)\sin(\alpha)\cos(i)), \\
+y_\text{obs} &= -x_\text{mag}\sin(\psi)\cos(\alpha) + y_\text{mag}\cos(\psi) + z_\text{mag}\sin(\psi)\sin(\alpha), \\
+z_\text{obs} &= x_\text{mag}(\sin(\alpha)\cos(i) - \cos(\psi)\cos(\alpha)\sin(i)) + y_\text{mag}\sin(\psi)\sin(i) \\
+             &+ z_\text{mag}(\cos(\alpha)\cos(i) - \cos(\psi)\sin(\alpha)\sin(i)), \\
+\end{aligned}
+\end{equation}
+
+Чтобы перейти в \textbf{рабочую систему отчета} нужно повернуть \textbf{систему наблюдателя} на угол $\varepsilon$ вокруг оси $Z$, определяемый соотношениями \eqref{eq:mag-to-obs}, если подставить в них вектор оси магнитосферы $\left\lbrace 0,\ 0,\ 1 \right\rbrace$:
+%
+\begin{equation}\label{eq:work-orientation}
+\begin{aligned}
+\sin(\varepsilon) &= \frac{(\cos(\alpha)\sin(i) - \cos(\psi)\sin(\alpha)\cos(i))}{\sqrt{1-\cos(\theta)^2}}, \\
+\cos(\varepsilon) &= \frac{\sin(\psi)\sin(\alpha)}{\sqrt{1-\cos(\theta)}}, \\
+\cos(\theta) &= \cos(\alpha)\cos(i) - \cos(\psi)\sin(\alpha)\sin(i), \\
+\end{aligned}
+\end{equation}
+%
+здесь $\theta$ --- угол наклона оси магнитосферы к лучу зрения.
+
+\item{}
+\end{itemize}
+\end{document}
