@@ -24,7 +24,7 @@
 
 \begin{itemize}
 \item \textbf{Система отсчета наблюдателя}
-Система отсчета, в которой ось $Z$ сонаправлена с лучом зрения. Ось вращения звезды отклонена от оси $Z$ (луча зрения) на угол $i$ и лежит в плоскости $XZ$. Угол между осью магнитосферы и осью вращения --- $\alpha$. Угол между плоскостью, содержащей ось вращения и ось магнитосферы, и плоскостью $XZ$ --- $\psi$.
+Система отсчета, в которой ось $Z$ сонаправлена с лучом зрения. Ось вращения звезды отклонена от оси $Z$ (луча зрения) на угол $i$ и лежит в плоскости $XZ$. Угол между осью магнитосферы и осью вращения --- $\alpha$. Угол между плоскостью, содержащей ось вращения и ось магнитосферы, и плоскостью $XZ$ --- $\psi$. 
 \item \textbf{Система отсчета звезды}
 Повернутая вокруг оси $Y$ система отсчета наблюдателя на угол $i$. Ось вращения в итоге совпадает с осью $Z$. 
 \item \textbf{Система отсчета магнитосферы}
@@ -87,29 +87,47 @@ z_\text{mag} &= x_\text{obs}(\sin(i)\cos(\alpha) - \cos(i)\cos(\psi)\sin(\alpha)
 \end{equation}
 
 А \eqref{eq:mag-to-star} в \eqref{eq:star-to-obs}:
-%
+
 \begin{equation}\label{eq:mag-to-obs}
 \begin{aligned}
 x_\text{obs} &= x_\text{mag}(\cos(\psi)\cos(\alpha)\cos(i) + \sin(\alpha)\sin(i)) + y_\text{mag}\sin(\psi)\cos(i) \\
              &+ z_\text{mag}(\cos(\alpha)\sin(i) - \cos(\psi)\sin(\alpha)\cos(i)), \\
 y_\text{obs} &= -x_\text{mag}\sin(\psi)\cos(\alpha) + y_\text{mag}\cos(\psi) + z_\text{mag}\sin(\psi)\sin(\alpha), \\
 z_\text{obs} &= x_\text{mag}(\sin(\alpha)\cos(i) - \cos(\psi)\cos(\alpha)\sin(i)) + y_\text{mag}\sin(\psi)\sin(i) \\
-             &+ z_\text{mag}(\cos(\alpha)\cos(i) - \cos(\psi)\sin(\alpha)\sin(i)), \\
+             &+ z_\text{mag}(\cos(\alpha)\cos(i) + \cos(\psi)\sin(\alpha)\sin(i)), \\
 \end{aligned}
 \end{equation}
+
+\item \textbf{Рабочая, наблюдатель}
 
 Чтобы перейти в \textbf{рабочую систему отчета} нужно повернуть \textbf{систему наблюдателя} на угол $\varepsilon$ вокруг оси $Z$, определяемый соотношениями \eqref{eq:mag-to-obs}, если подставить в них вектор оси магнитосферы $\left\lbrace 0,\ 0,\ 1 \right\rbrace$:
 %
 \begin{equation}\label{eq:work-orientation}
 \begin{aligned}
-\sin(\varepsilon) &= \frac{(\cos(\alpha)\sin(i) - \cos(\psi)\sin(\alpha)\cos(i))}{\sqrt{1-\cos(\theta)^2}}, \\
-\cos(\varepsilon) &= \frac{\sin(\psi)\sin(\alpha)}{\sqrt{1-\cos(\theta)}}, \\
-\cos(\theta) &= \cos(\alpha)\cos(i) - \cos(\psi)\sin(\alpha)\sin(i), \\
+\sin(\varepsilon) &= \frac{(\cos(\alpha)\sin(i) - \cos(\psi)\sin(\alpha)\cos(i))}{\sqrt{1-\cos^2(\theta)}}, \\
+\cos(\varepsilon) &= \frac{\sin(\psi)\sin(\alpha)}{\sqrt{1-\cos^2(\theta)}}, \\
+\cos(\theta) &= \cos(\alpha)\cos(i) + \cos(\psi)\sin(\alpha)\sin(i), \\
 \end{aligned}
 \end{equation}
 %
-здесь $\theta$ --- угол наклона оси магнитосферы к лучу зрения.
+здесь $\theta$ --- угол наклона оси магнитосферы к лучу зрения. Тогда:
+%
+\begin{equation}\label{eq:obs-to-work}
+\begin{aligned}
+x_\text{work} &= x_\text{obs}\cos(\varepsilon) - y_\text{obs}\sin(\varepsilon), \\
+y_\text{work} &= x_\text{obs}\sin(\varepsilon) + y_\text{obs}\cos(\varepsilon) , \\
+z_\text{work} &= z_\text{obs}, \\
+\end{aligned}
+\end{equation}
+%
+\begin{equation}\label{eq:work-to-obs}
+\begin{aligned}
+x_\text{obs} &= x_\text{work}\cos(\varepsilon) + y_\text{work}\sin(\varepsilon), \\
+y_\text{obs} &= - x_\text{work}\sin(\varepsilon) + y_\text{work}\cos(\varepsilon) , \\
+z_\text{obs} &= z_\text{work}, \\
+\end{aligned}
+\end{equation}
 
-\item{}
+Остальные переходы можно получить перемножением матриц.
 \end{itemize}
 \end{document}
